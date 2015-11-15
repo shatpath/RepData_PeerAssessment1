@@ -172,3 +172,13 @@ output: html_document
     str(updDF)
    
 ```
+### 2. Plot
+```{r echo=TRUE}
+     group_by_interval<-group_by(updDF,interval)
+     group_by_interval<-arrange(group_by_interval,interval)
+     summary_by_interval<-summarize(group_by_interval,mean_of_steps=mean(as.numeric(steps),na.rm=TRUE))
+   
+     library(lattice)
+    xyplot(summary_by_interval$mean_of_steps ~summary_by_interval$interval|updDF$day_of_week,layout=c(1,2),type="l")
+    
+```    
